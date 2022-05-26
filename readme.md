@@ -120,6 +120,7 @@ Babel 是一个工具链，可以在线将ES6代码转为ES5代码。转换后�
 > 3. 源代码转换(codemods)...
 
 > 1、安装: ` npm install --save-dev @babel/preset-react `
+> 
 > 2、配置banel：
 ```
 // 在项目的根目录（package.json 所在的位置）中，创建一个名为 babel.config.json 的文件，其中包含以下内容。
