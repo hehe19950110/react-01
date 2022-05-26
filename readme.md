@@ -1,18 +1,21 @@
 一、JSX与环境搭建
 
 1. JSX：JavaScript 语法扩展，⽤于形象描述⼀段DOM结构。
+
 2. JSX与转换后的代码:
+
 1)预定义 React.createElement 的功能：
+```    
     const React = { }
     React.createElement = function () { }
+```
 2)配置环境实现JSX转换：
+
 > 1、设置项目：
-    1. 首先，为项目创建目录：
- `mkdir webpack-react-tutorial && cd webpack-react-tutorial`
-    2. 创建用于保存代码的最小目录结构：
-`mkdir -p src`
-    3. 通过运行以下内容来初始化项目：
-`npm init -y`
+    1. 首先，为项目创建目录：`mkdir webpack-react-tutorial && cd webpack-react-tutorial`
+    2. 创建用于保存代码的最小目录结构：`mkdir -p src`
+    3. 通过运行以下内容来初始化项目：`npm init -y`
+
 > 2、设置Webpack：
     1. 让我们通过运行以下命令安装webpack和webpack-cli：
 `npm i webpack webpack-cli --save-dev`
