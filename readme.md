@@ -36,15 +36,15 @@
 > 同时 Babel必须配置预设（preset，预先配置好的一组插件）：
 * @babel/preset-env 用于将现代JavaScript编译为ES5
 * @babel/preset-react 可将JSX和其他内容编译为JavaScript
-
-安装依赖项：` npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev `
-
-1. @babel/core，webpack项目里当 import 一个.jsx文件时，使用 babel-loader 来处理这个文件，babel-loader使用 @babel/core 来执行转换。
-
-2. @babel/preset-env 可以根据开发者的配置，按需加载插件。
+> 
+> 安装依赖项：` npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev `
+> 
+>> 1. @babel/core，webpack项目里当 import 一个.jsx文件时，使用 babel-loader 来处理这个文件，babel-loader使用 @babel/core 来执行转换。
+>> 
+>> 2. @babel/preset-env 可以根据开发者的配置，按需加载插件。
 配置项大致包括：需要支持的平台：比如node、浏览器等；需要支持的平台的版本：比如支持比较新的语法，ES6、ES7、ES8等最新的ES转变为ES5的语法。
-
-3. @babel/preset-react 代码里把 JSX转换为正常的JavaScript。
+>> 
+>> 3. @babel/preset-react 代码里把 JSX转换为正常的JavaScript。
 在项目根目录创建 .babelrc 文件，该文件的作用是 告诉 babel-core 在执行转换的时候使用如下插件：
 ```
 {
@@ -62,7 +62,7 @@
   ]
 }
 ```
-> 创建一个名为的文件webpack.config.js，内容如下：
+>> 创建一个名为的文件webpack.config.js，内容如下：
 ```
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -96,9 +96,10 @@ module.exports = {
   }
 }
 ```
-> 为了使环境能正常启动，需要安装 html-webpack-plugin 和 webpack-dev-server：`npm i --save-dev html-webpack-plugin webpack-dev-server`
-
- 修改 package.json:
+>> 为了使环境能正常启动，需要安装 html-webpack-plugin 和 webpack-dev-server：`npm i --save-dev html-webpack-plugin webpack-dev-server`
+>> 
+>> 修改 package.json:
+```
 {
   ...
   "scripts": {
@@ -107,8 +108,11 @@ module.exports = {
   },
   ...
 }
+```
+
 > 4、测试JSX：
-创建 src/index.js 文件:
+> 创建 src/index.js 文件:
+```
 const React = {
   createElement() {
     console.log(arguments)
@@ -116,6 +120,7 @@ const React = {
 };
 let div = <div>hello </div>;
 console.log(div);
+```
 
 二、Babel：
 Babel 是一个工具链，可以在线将ES6代码转为ES5代码。转换后的代码，可以直接作为ES5代码插入网页运行。
