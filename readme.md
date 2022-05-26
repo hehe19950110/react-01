@@ -12,20 +12,13 @@
 2)配置环境实现JSX转换：
 > 
 > 1、设置项目：
-
 >> 1. 首先，为项目创建目录：` mkdir teach-one-react `    
 >> 2. 创建用于保存代码的最小目录结构：` mkdir src `
-    
 >> 3. 通过运行以下内容来初始化项目：` npm init -y `
-
 > 2、设置Webpack
-
 >> 1. 让我们通过运行以下命令安装webpack和webpack-cli：` npm install webpack webpack-cli --save-dev `
-
 >> 2. 现在在package.json里面添加webpack命令：` "scripts": {"build": "webpack --mode production"} `
-    
-> 此时，无需为webpack定义配置文件。较旧的webpack版本会自动查找配置文件。从版本4开始，情况不再如此。
-
+>> 此时，无需为webpack定义配置文件。较旧的webpack版本会自动查找配置文件。从版本4开始，情况不再如此。
 > 3、设置 Babel 解释 JSX：
 > 
 > Babel 是一个转换工具，可以将代码转换。如 将最新的JS的写法转换为旧的 等。Webpack本身不知道如何转换JavaScript；它依赖于loader作为转换工具。
