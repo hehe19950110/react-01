@@ -15,10 +15,12 @@
 >> 1. 首先，为项目创建目录：` mkdir teach-one-react `    
 >> 2. 创建用于保存代码的最小目录结构：` mkdir src `
 >> 3. 通过运行以下内容来初始化项目：` npm init -y `
+>
 > 2、设置Webpack
 >> 1. 让我们通过运行以下命令安装webpack和webpack-cli：` npm install webpack webpack-cli --save-dev `
 >> 2. 现在在package.json里面添加webpack命令：` "scripts": {"build": "webpack --mode production"} `
 >> 此时，无需为webpack定义配置文件。较旧的webpack版本会自动查找配置文件。从版本4开始，情况不再如此。
+>
 > 3、设置 Babel 解释 JSX：
 > 
 > Babel 是一个转换工具，可以将代码转换。如 将最新的JS的写法转换为旧的 等。Webpack本身不知道如何转换JavaScript；它依赖于loader作为转换工具。
@@ -118,12 +120,12 @@ console.log(div);
 Babel 是一个工具链，可以在线将ES6代码转为ES5代码。转换后的代码，可以直接作为ES5代码插入网页运行。
 
 以下是 Babel 可以做的主要事情：
-1. 转换语法
-2. Polyfill 目标环境中缺少的功能（通过如 core-js 的第三方 polyfill）
-3. 源代码转换(codemods)...
-> 1、安装:
-`npm install --save-dev @babel/preset-react`
-> 2、配置banel：
+> 1. 转换语法
+> 2. Polyfill 目标环境中缺少的功能（通过如 core-js 的第三方 polyfill）
+> 3. 源代码转换(codemods)...
+>> 1、安装: ` npm install --save-dev @babel/preset-react `
+>> 2、配置banel：
+```
 // 在项目的根目录（package.json 所在的位置）中，创建一个名为 babel.config.json 的文件，其中包含以下内容。
 {
   "presets": [...],
@@ -141,8 +143,10 @@ module.exports = function (api) {
     plugins
   };
 }
-> 3、plugins 插件:
-如果插件在 npm 中，你可以传入插件的名字，Babel 会检查它是否安装在 node_modules 中。这将被添加到 plugins 配置项，该选项接受一个数组。
+```
+>> 3、plugins 插件:
+>>如果插件在 npm 中，你可以传入插件的名字，Babel 会检查它是否安装在 node_modules 中。这将被添加到 plugins 配置项，该选项接受一个数组。
+```
 {
   "plugins": ["babel-plugin-myPlugin", "@babel/plugin-transform-runtime"]
 }
@@ -150,22 +154,26 @@ module.exports = function (api) {
 {
   "plugins": ["./node_modules/asdf/plugin"]
 }
-插件排序：
-1. 插件在预设之前运行。
-2. 插件排序是从第一个到最后一个。
-3. 预设顺序是颠倒的（最后一个到第一个）。
-例如：
-`{ "presets": ["@babel/preset-env", "@babel/preset-react"] }`；将按以下顺序运行：先 @babel/preset-react 再 @babel/preset-env。
-> 4、preset 预设
-Babel 预设可以作为 Babel 插件和配置 选项 的共享集。
-常见环境组合了几个预设：
-1. @babel/preset-env 用于编译 ES2015+ 语法
-2. @babel/preset-typescript 用于 TypeScript
-3. @babel/preset-react 用于 React
-4. @babel/preset-flow 用于 Flow
+```
+>> 插件排序：
+>> 1. 插件在预设之前运行。
+>> 2. 插件排序是从第一个到最后一个。
+>> 3. 预设顺序是颠倒的（最后一个到第一个）。
+>> 例如：`{ "presets": ["@babel/preset-env", "@babel/preset-react"] }`；
+>> 将按以下顺序运行：先 @babel/preset-react 再 @babel/preset-env。
+>
+> 4、(preset) 预设:
+> Babel 预设可以作为 Babel 插件和配置选项的共享集。
+> 常见环境组合了几个预设：
+>> 1. @babel/preset-env 用于编译 ES2015+ 语法
+>> 2. @babel/preset-typescript 用于 TypeScript
+>> 3. @babel/preset-react 用于 React
+>> 4. @babel/preset-flow 用于 Flow
 
 三、虚拟DOM
+
 JSX映射为对象:
+```
 const React = {
   createElement(tag, attrs, ...children) {
     return {
@@ -175,8 +183,9 @@ const React = {
      }
   }
 };
-
+```
 渲染标签:
+```
 function render(vdom, container) {
   let node;
   if(typeof vdom === 'string') {
@@ -194,8 +203,9 @@ const ReactDom = {
   render(vdom, container);
   }
 };
-
+```
 渲染属性：
+```
 function setAttribute(node, attrs) {
    if(!attrs) return;
    for(let key in attrs) {
@@ -208,6 +218,7 @@ function setAttribute(node, attrs) {
     }
   }
 }
+```
 
 es6中export和export default的区别：
 1. export与export default均可用于导出常量、函数、文件、模块。
