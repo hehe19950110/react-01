@@ -31,6 +31,7 @@
 
 > Babel 是一个转换工具，可以将代码转换。如 将最新的JS的写法转换为旧的 等。Webpack本身不知道如何转换JavaScript；它依赖于loader作为转换工具。
 > React组件主要是用现代JavaScript语法编写的。以class关键字为例。有状态的React组件可以声明为类或箭头（或常规函数）。但是旧版浏览器无法理解ECMAScript 2015，因此我们需要某种转换。
+> 
 > 一个webpack loader 将某些东西作为输入并产生一个输出，称为bundle。 babel-loader是负责与Babel对话的 webpack loader。
 > 同时 Babel必须配置预设（preset，预先配置好的一组插件）：
 * @babel/preset-env 用于将现代JavaScript编译为ES5
@@ -62,6 +63,7 @@
 }
 ```
 > 创建一个名为的文件webpack.config.js，内容如下：
+```
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
@@ -93,8 +95,9 @@ module.exports = {
     },
   }
 }
-> 为了使环境能正常启动，需要安装 html-webpack-plugin 和 webpack-dev-server：
-`npm i --save-dev html-webpack-plugin webpack-dev-server`
+```
+> 为了使环境能正常启动，需要安装 html-webpack-plugin 和 webpack-dev-server：`npm i --save-dev html-webpack-plugin webpack-dev-server`
+
  修改 package.json:
 {
   ...
