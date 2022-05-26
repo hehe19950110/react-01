@@ -29,13 +29,13 @@
 
 > 3、设置 Babel 解释 JSX：
 
-Babel 是一个转换工具，可以将代码转换。如 将最新的JS的写法转换为旧的 等。Webpack本身不知道如何转换JavaScript；它依赖于loader作为转换工具。
+> Babel 是一个转换工具，可以将代码转换。如 将最新的JS的写法转换为旧的 等。Webpack本身不知道如何转换JavaScript；它依赖于loader作为转换工具。
 
-React组件主要是用现代JavaScript语法编写的。以class关键字为例。有状态的React组件可以声明为类或箭头（或常规函数）。但是旧版浏览器无法理解ECMAScript 2015，因此我们需要某种转换。
+> React组件主要是用现代JavaScript语法编写的。以class关键字为例。有状态的React组件可以声明为类或箭头（或常规函数）。但是旧版浏览器无法理解ECMAScript 2015，因此我们需要某种转换。
 
-一个webpack loader 将某些东西作为输入并产生一个输出，称为bundle。 babel-loader是负责与Babel对话的 webpack loader。
+> 一个webpack loader 将某些东西作为输入并产生一个输出，称为bundle。 babel-loader是负责与Babel对话的 webpack loader。
 
-同时 Babel必须配置预设（preset，预先配置好的一组插件）：
+> 同时 Babel必须配置预设（preset，预先配置好的一组插件）：
 * @babel/preset-env 用于将现代JavaScript编译为ES5
 * @babel/preset-react 可将JSX和其他内容编译为JavaScript
 
