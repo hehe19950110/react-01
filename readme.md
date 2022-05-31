@@ -51,6 +51,7 @@
   ]
 }
 ```
+
 >> 创建一个名为的文件webpack.config.js，内容如下：
 ```
 const path = require('path');
@@ -85,7 +86,9 @@ module.exports = {
   }
 }
 ```
->> 为了使环境能正常启动，需要安装 html-webpack-plugin 和 webpack-dev-server：`npm i --save-dev html-webpack-plugin webpack-dev-server`
+
+>> 为了使环境能正常启动，需要安装 html-webpack-plugin 和 webpack-dev-server：
+>> `npm i --save-dev html-webpack-plugin webpack-dev-server`
 >> 
 >> 修改 package.json:
 ```
@@ -114,10 +117,10 @@ console.log(div);
 二、Babel：
 Babel 是一个工具链，可以在线将ES6代码转为ES5代码。转换后的代码，可以直接作为ES5代码插入网页运行。
 
-以下是 Babel 可以做的主要事情：
-> 1. 转换语法
-> 2. Polyfill 目标环境中缺少的功能（通过如 core-js 的第三方 polyfill）
-> 3. 源代码转换(codemods)...
+> 以下是 Babel 可以做的主要事情：
+>> 1. 转换语法
+>> 2. Polyfill 目标环境中缺少的功能（通过如 core-js 的第三方 polyfill）
+>> 3. 源代码转换(codemods)...
 
 > 1、安装: ` npm install --save-dev @babel/preset-react `
 > 
@@ -141,6 +144,7 @@ module.exports = function (api) {
   };
 }
 ```
+
 > 3、plugins 插件:
 >如果插件在 npm 中，你可以传入插件的名字，Babel 会检查它是否安装在 node_modules 中。这将被添加到 plugins 配置项，该选项接受一个数组。
 ```
@@ -152,6 +156,7 @@ module.exports = function (api) {
   "plugins": ["./node_modules/asdf/plugin"]
 }
 ```
+
 > 插件排序：
 >> 1. 插件在预设之前运行。
 >> 2. 插件排序是从第一个到最后一个。
@@ -181,6 +186,7 @@ const React = {
   }
 };
 ```
+
 渲染标签:
 ```
 function render(vdom, container) {
@@ -201,6 +207,7 @@ const ReactDom = {
   }
 };
 ```
+
 渲染属性：
 ```
 function setAttribute(node, attrs) {
