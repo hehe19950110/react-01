@@ -59,6 +59,7 @@ JSX与转换后的代码:
 ```
 
 ### 三、如何设置React环境，Webpack和Babel
+
 https://github.com/jirengu/OneReact
 > #### 1、设置项目:
 >> 1. 首先，为项目创建目录：
@@ -204,9 +205,7 @@ devServer: {
 
 >> #### 4.配置CSS样式
 在src下面添加index.css文件 并设置对应的样式；
-
 在index.js文件中 引用它 ` import './index.css'; `
-
 在webpack.config.js中 （module.exports下）添加css规则:
 
 ```
@@ -218,7 +217,6 @@ rules: [
 ]
 ```
 安装css规则 `npm install --save-dev style-loader css-loader`
-
 执行，启动测试查看效果 `npm run start `
 
 参考：https://github.com/jirengu/OneReact.git
