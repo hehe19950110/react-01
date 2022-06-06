@@ -89,7 +89,7 @@ Webpack本身不知道如何转换JavaScript；它依赖于loader作为转换工
 
 >> #### 安装依赖项：
 `npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev`
-以上工具的作用是：
+>> 以上工具的作用是：
 webpack项目里当 import 一个.jsx文件时，使用 babel-loader 来处理这个文件， babel-loader 使用 @babel/core 来执行转换， 在转换的过程中使用了babel的 @babel/preset-env插件用于把最新的ES转换为ES5，使用 @babel/preset-react把 JSX转换为正常的JavaScript。
 在项目根目录创建 .babelrc 文件，该文件的作用是 告诉 babel-core 在执行转换的时候使用如下插件：
 
@@ -188,6 +188,7 @@ ReactDOM.render(
   <h1>hello world</h1>,document.body
 );
 ```
+
 >> #### 2.为了正常调用，需要安装 `npm install --save react react-dom`
 因webpack.config.js里的选项对象无效，需将与API架构不匹配的options对象初始化Dev Server修改。
 
