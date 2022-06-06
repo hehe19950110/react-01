@@ -39,7 +39,6 @@ unpkg.com/react/umd/react.production.min.js
 
 > 3、unpkg上的发布流程
 如果你是 npm 包作者，只要发布到 npm 仓库，unpkg 替你减轻了发布到CDN的麻烦。
-
 仅需 npm 包中包含UMD构建即可（并非在代码仓库里包含，两者不同！）。
 
 通过以下步骤：
@@ -61,15 +60,15 @@ JSX与转换后的代码:
 
 ### 三、如何设置React环境，Webpack和Babel
 https://github.com/jirengu/OneReact
-> 1、设置项目:
+> #### 1、设置项目:
 >> 1. 首先，为项目创建目录：
-`mkdir webpack-react-tutorial && cd webpack-react-tutorial`
+`mkdir xx目录名 && cd xx目录名`
 >> 2. 创建用于保存代码的最小目录结构：
 `mkdir -p src`
 >> 3. 通过运行以下内容来初始化项目：
 `npm init -y`
 
-> 2、设置Webpack:
+> #### 2、设置Webpack:
 >> 1. 让我们通过运行以下命令安装webpack和webpack-cli：
 `npm i webpack webpack-cli --save-dev`
 
@@ -87,7 +86,7 @@ Webpack本身不知道如何转换JavaScript；它依赖于loader作为转换工
  * @babel/preset-env 用于将现代JavaScript编译为ES5
  * @babel/preset-react 可将JSX和其他内容编译为JavaScript
 
->> 3. 安装依赖项：
+>> #### 安装依赖项：
 `npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev`
 以上工具的作用是：
 webpack项目里当 import 一个.jsx文件时，使用 babel-loader 来处理这个文件， babel-loader 使用 @babel/core 来执行转换， 在转换的过程中使用了babel的 @babel/preset-env插件用于把最新的ES转换为ES5，使用 @babel/preset-react把 JSX转换为正常的JavaScript。
@@ -109,7 +108,7 @@ webpack项目里当 import 一个.jsx文件时，使用 babel-loader 来处理�
   ]
 }
 ```
->> plugins 插件: 如果插件在 npm 中，你可以传入插件的名字，Babel 会检查它是否安装在 node_modules 中。这将被添加到 plugins 配置项，该选项接受一个数组。
+>> #### plugins 插件: 如果插件在 npm 中，你可以传入插件的名字，Babel 会检查它是否安装在 node_modules 中。这将被添加到 plugins 配置项，该选项接受一个数组。
 
 ```
 {
@@ -126,13 +125,13 @@ webpack项目里当 import 一个.jsx文件时，使用 babel-loader 来处理�
  * 预设顺序是颠倒的（最后一个到第一个）。 
  例如：`{ "presets": ["@babel/preset-env", "@babel/preset-react"] }； `将按以下顺序运行：先 @babel/preset-react 再 @babel/preset-env。
 
->> 4.(preset) 预设: Babel 预设可以作为 Babel 插件和配置选项的共享集。 常见环境组合了几个预设：
+>> 3.(preset) 预设: Babel 预设可以作为 Babel 插件和配置选项的共享集。 常见环境组合了几个预设：
   * @babel/preset-env 用于编译 ES2015+ 语法
   * @babel/preset-typescript 用于 TypeScript
   * @babel/preset-react 用于 React
   * @babel/preset-flow 用于 Flow
 
->> 5.创建一个名为的文件webpack.config.js，内容如下：
+>> #### 4.创建一个名为的文件webpack.config.js，内容如下：
 
 ```
 const path = require('path');
@@ -161,104 +160,65 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist'
-  }
+    devServer: {
+    //contentBase: './dist'
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
 }
 ```
 >> 该配置非常少。对于每个带有js或jsx扩展名的文件，Webpack都会通过babel-loader处理代码。 以上配置不只能用于本章练习JSX，也适合正式的React开发环境。
 
->> 6.为了使环境能正常启动，需要安装 html-webpack-plugin 和 wepack-dev-server
+>> #### 5.为了使环境能正常启动，需要安装 html-webpack-plugin 和 wepack-dev-server
 `npm i --save-dev html-webpack-plugin webpack-dev-server`
 
->> 7. 修改 package.json
-
-```
-{
-  ...
-  "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack"
-  },
-  ...
-}
-```
+>> #### 6. 修改 package.json
+在package.json里添加webpack命令（在开发的过程中 打开webpack-server)：
+` "scripts": { "start": "webpack-dev-server"} `
 
 > 4、测试JSX:
->> 1.创建 src/index.js 文件
+>> #### 1.创建 src/index.js 文件
 
 ```
-const React = {
-  createElement(...args) {
-    console.log(args)
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+  <h1>hello world</h1>,document.body
+);
+```
+>> #### 2.为了正常调用，需要安装 `npm install --save react react-dom`
+因webpack.config.js里的选项对象无效，需将与API架构不匹配的options对象初始化Dev Server修改。
+
+```
+devServer: {
+    contentBase: './dist'  改为：
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
   }
-};
-
-let div = <div>hello </div>;
-console.log(div);
 ```
->> 2.执行，启动测试
-`npm run start `
+并在 "module.exports "里 添加 `mode: 'development',`
 
-### 四、虚拟DOM
-> 1、JSX映射为对象:
+>> 3.执行，启动测试 `npm run start `
 
-```
-const React = {
-  createElement(tag, attrs, ...children) {
-    return {
-      tag,
-       attrs,
-       children
-     }
-  }
-};
-```
-> 2、渲染标签:
+>> #### 4.配置CSS样式
+在src下面添加index.css文件 并设置对应的样式；
+
+在index.js文件中 引用它 ` import './index.css'; `
+
+在webpack.config.js中 （module.exports下）添加css规则:
 
 ```
-function render(vdom, container) {
-  let node;
-  if(typeof vdom === 'string') {
-    node = document.createTextNode(vdom);
-  }
-  if(typeof vdom === 'object') {
-    node = document.createElement(vdom.tag);
-    vdom.children.forEach(childVdom => render(childVdom, node));
-  }
-  container.appendChild(node);
-}
-const ReactDom = {
-  render(vdom, container) {
-  container.innerHTML = '';
-  render(vdom, container);
-  }
-};
+rules: [
+  {
+    test: /\.css$/,
+    use: ['style-loader','css-loader']
+  },
+]
 ```
-> 3、渲染属性：
+安装css规则 `npm install --save-dev style-loader css-loader`
 
-```
-function setAttribute(node, attrs) {
-   if(!attrs) return;
-   for(let key in attrs) {
-     if(key.startsWith('on')) {
-       node[key.toLocaleLowerCase()] = attrs[key];
-    } else if(key === 'style') {
-    Object.assign(node.style, attrs[key]);  //Object.assign 方法，合并对象，合并具有相同属性的对象，拷贝 Symbol 类型属性等。
-     } else {
-    node[key] = attrs[key];
-    }
-  }
-}
-```
->> es6中export和export default的区别：
-
-export与export default均可用于导出常量、函数、文件、模块。
-
-你可以在其它文件或模块中通过import+(常量 | 函数 | 文件 | 模块)名的方式，将其导入，以便能够对其进行使用。
-
-在一个文件或模块中，export、import可以有多个，export default仅有一个。
-
-通过export方式导出，在导入时要加{ }，export default则不需要,使用export default命令，为模块指定默认输出，这样就不需要知道所要加载模块的变量名。
+执行，启动测试查看效果 `npm run start `
 
 参考：https://github.com/jirengu/OneReact.git
