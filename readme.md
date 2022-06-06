@@ -39,6 +39,7 @@ unpkg.com/react/umd/react.production.min.js
 
 > 3、unpkg上的发布流程
 如果你是 npm 包作者，只要发布到 npm 仓库，unpkg 替你减轻了发布到CDN的麻烦。
+
 仅需 npm 包中包含UMD构建即可（并非在代码仓库里包含，两者不同！）。
 
 通过以下步骤：
@@ -251,8 +252,13 @@ function setAttribute(node, attrs) {
 }
 ```
 >> es6中export和export default的区别：
+
 export与export default均可用于导出常量、函数、文件、模块。
+
 你可以在其它文件或模块中通过import+(常量 | 函数 | 文件 | 模块)名的方式，将其导入，以便能够对其进行使用。
+
 在一个文件或模块中，export、import可以有多个，export default仅有一个。
+
 通过export方式导出，在导入时要加{ }，export default则不需要,使用export default命令，为模块指定默认输出，这样就不需要知道所要加载模块的变量名。
+
 参考：https://github.com/jirengu/OneReact.git
